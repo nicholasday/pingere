@@ -6,65 +6,46 @@ import java.lang.Object;
 import java.awt.geom.Path2D;
 
 public class Draw extends JPanel{
-	private int i = 1, x1=-10, x2=-10, x3=-10, y1=-10, y2=-10, y3=-10, x4 = -10, y4 = -10;
-	Path2D.Double path = new Path2D.Double();
-
-	public Draw() {
-		addMouseListener(new MouseAdapter());
-		addMouseMotionListener(new MouseMotionAdapter());
-		setPreferredSize(new Dimension(400, 400));
-	}	
+	Image image;
+	Graphics2D graphics2D;
+	int currentX, currentY, oldX, oldY;
 	
-	public void paint(Graphics g) {
-		//g.fillOval(y, x, 3, 3);
-		Graphics2D g2 = (Graphics2D)g;
-		path.moveTo(x1, y1);
-		path.curveTo(x2, y2, x3, y3, x4, y4);
-		g2.draw(path);
-	}
-	private class MouseMotionAdapter implements MouseMotionListener{
-		public void mouseDragged(MouseEvent event) {
-			if ((i-1)%4 == 0) {
-				x1 = x4;
-				y1 = y4;
+	public Draw(){
+		setDoubleBuffered(false);
+		addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				oldX = e.getX();
+				oldY = e.getY();
 			}
-			if ((i-2)%4 == 0) {
-				x2 = event.getX();
-				y2 = event.getY();
-			}
-			if ((i-3)%4 == 0) {
-				x3 = event.getX();
-				y3 = event.getY();
-			}
-			if (i%4 == 0) {
-				x4 = event.getX();
-				y4 = event.getY();
+		});
+		addMouseMotionListener(new MouseMotionAdapter(){
+			public void mouseDragged(MouseEvent e){
+				currentX = e.getX();
+				currentY = e.getY();
+				if(graphics2D != null)
+				graphics2D.drawLine(oldX, oldY, currentX, currentY);
 				repaint();
+				oldX = currentX;
+				oldY = currentY;
 			}
-			i++;
+
+		});
+	}
+
+	public void paintComponent(Graphics g){
+		if(image == null){
+			image = createImage(getSize().width, getSize().height);
+			graphics2D = (Graphics2D)image.getGraphics();
+			graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			clear();
 
 		}
-		public void mouseMoved(MouseEvent event) {
-			// TODO Auto-generated method stub
-			x4 = event.getX();
-			y4 = event.getY();
-		}
+		g.drawImage(image, 0, 0, null);
 	}
-	private class MouseAdapter implements MouseListener {
-		public void mouseClicked(MouseEvent event) {
-			
-		}
-		public void mouseEntered(MouseEvent event) {
-			
-		}
-		public void mouseExited(MouseEvent event) {
-			
-		}
-		public void mouseReleased(MouseEvent event) {
-			i = 1;
-		}
-		public void mousePressed(MouseEvent event) {
-			
-		}
+	public void clear(){
+		graphics2D.setPaint(Color.white);
+		graphics2D.fillRect(0, 0, getSize().width, getSize().height);
+		graphics2D.setPaint(Color.black);
+		repaint();
 	}
 }
