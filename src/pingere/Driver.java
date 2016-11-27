@@ -14,12 +14,11 @@ public class Driver
 	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
-		State state = State.DRAW;
 		JFrame frame = new JFrame ("Pingere");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		Draw draw = new Draw();
-		frame.getContentPane().add(new Oval());
+		frame.getContentPane().add(new Oval2());
 		frame.pack();
 		frame.setVisible(true);
 

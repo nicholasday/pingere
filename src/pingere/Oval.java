@@ -32,7 +32,7 @@ public class Oval extends JPanel{
 			graphics2D.setColor(Color.white);
 			//graphics2D.fillRect(0, 0, 400, 400);
 			graphics2D.fillOval(x1, y1, oldx2-x1, oldy2-y1);
-			graphics2D.setColor(Color.black);
+			graphics2D.setColor(State.getColor());
 			if (x2 > x1) {
 				if (y2 > y1)
 					graphics2D.drawOval(x1, y1, x2-x1, y2-y1);
