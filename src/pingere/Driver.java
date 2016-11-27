@@ -12,7 +12,7 @@ public class Driver
 		frame.getContentPane().add(new Draw());
 		frame.pack();
 		frame.setVisible(true);
-		System.out.println("Nick is bad");
+
 	}
 
 	
