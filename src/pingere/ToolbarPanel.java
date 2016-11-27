@@ -9,8 +9,8 @@ public class ToolbarPanel extends JPanel
 {
 	JButton eraser, brush, selection;
 	public ToolbarPanel() {
-		JButton brush = new JButton(icon);
-		JButton eraser = new JButton(icon1);
+	//	JButton brush = new JButton(icon);
+		//JButton eraser = new JButton(icon1);
 	}
 
 }

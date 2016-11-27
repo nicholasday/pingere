@@ -10,6 +10,7 @@ public class Draw extends JPanel{
 	Path2D.Double path = new Path2D.Double();
 
 	public Draw() {
+		addMouseListener(new MouseAdapter());
 		addMouseMotionListener(new MouseMotionAdapter());
 		setPreferredSize(new Dimension(400, 400));
 	}	
@@ -24,8 +25,8 @@ public class Draw extends JPanel{
 	private class MouseMotionAdapter implements MouseMotionListener{
 		public void mouseDragged(MouseEvent event) {
 			if ((i-1)%4 == 0) {
-				x1 = event.getX();
-				y1 = event.getY();
+				x1 = x4;
+				y1 = y4;
 			}
 			if ((i-2)%4 == 0) {
 				x2 = event.getX();
@@ -43,8 +44,26 @@ public class Draw extends JPanel{
 			i++;
 
 		}
-		public void mouseMoved(MouseEvent e) {
+		public void mouseMoved(MouseEvent event) {
 			// TODO Auto-generated method stub
+			x4 = event.getX();
+			y4 = event.getY();
+		}
+	}
+	private class MouseAdapter implements MouseListener {
+		public void mouseClicked(MouseEvent event) {
+			
+		}
+		public void mouseEntered(MouseEvent event) {
+			
+		}
+		public void mouseExited(MouseEvent event) {
+			
+		}
+		public void mouseReleased(MouseEvent event) {
+			i = 1;
+		}
+		public void mousePressed(MouseEvent event) {
 			
 		}
 	}
