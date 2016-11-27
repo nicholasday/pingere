@@ -14,14 +14,18 @@ public class Driver
 	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
-		JFrame frame = new JFrame ("Pingere");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		JFrame parent = new JFrame ("Pingere");
+		JPanel content = new JPanel ();
+		JPanel content1 = new JPanel ();
+		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		parent.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		Draw draw = new Draw();
-		frame.getContentPane().add(new Oval2());
-		frame.pack();
-		frame.setVisible(true);
-
+		content.add(new ToolbarPanel());
+		content1.add(new Oval2());
+		parent.add(content);
+		parent.pack();
+		parent.setVisible(true);
+	
 	}
 
 	
