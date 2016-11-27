@@ -6,7 +6,7 @@ import java.lang.Object;
 import java.awt.geom.Path2D;
 
 public class Draw extends JPanel{
-	private int x1=-10, x2=-10, x3=-10, y1=-10, y2=-10, y3=-10, x4 = -10, y4 = -10;
+	private int i = 1, x1=-10, x2=-10, x3=-10, y1=-10, y2=-10, y3=-10, x4 = -10, y4 = -10;
 	Path2D.Double path = new Path2D.Double();
 
 	public Draw() {
@@ -23,7 +23,6 @@ public class Draw extends JPanel{
 	}
 	private class MouseMotionAdapter implements MouseMotionListener{
 		public void mouseDragged(MouseEvent event) {
-			int i = 1;
 			if ((i-1)%4 == 0) {
 				x1 = event.getX();
 				y1 = event.getY();
