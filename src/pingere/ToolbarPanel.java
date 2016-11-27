@@ -12,8 +12,8 @@ public class ToolbarPanel extends JPanel
 	JLabel statuslabel;
 	public ToolbarPanel() 
 	{
-		brush = new JButton("", createImageIcon("/paint_brush.png", "brush"));
-		eraser = new JButton("", createImageIcon("/eraser.png", "eraser"));
+		brush = new JButton("", createImageIcon("java.png", "brush"));
+		eraser = new JButton("", createImageIcon("java.png", "eraser"));
 		statuslabel = new JLabel("");
 		
 		brush.addActionListener(new ActionListener()
@@ -35,9 +35,9 @@ public class ToolbarPanel extends JPanel
 		add(statuslabel);
 	}
 
-	private static ImageIcon createImageIcon(String url, String description)
+	private ImageIcon createImageIcon(String url, String description)
 	{
-		java.net.URL imgURL = ToolbarPanel.class.getResource(url);
-		return new ImageIcon(new ImageIcon(imgURL, description).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		java.net.URL imgURL = getClass().getResource(url);
+		return new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 	}
 }
