@@ -16,7 +16,19 @@ public class Oval extends JPanel{
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 400, 400);
 		g.setColor(Color.black);
-		g.drawOval(x1, y1, x2-x1, y2-y1);
+		if (x2 > x1) {
+			if (y2 > y1)
+				g.drawOval(x1, y1, x2-x1, y2-y1);
+			if (y1 > y2)
+				g.drawOval(x1, y2, x2-x1, y1-y2);
+		}
+		if (x1 > x2) {
+			if (y2 > y1)
+				g.drawOval(x2, y1, x1-x2, y2-y1);
+			if (y1 > y2)
+				g.drawOval(x2, y2, x1-x2, y1-y2);
+		}
+		
 	}
 	private class MouseMotionAdapter implements MouseMotionListener {
 		public void mouseDragged(MouseEvent event) {
