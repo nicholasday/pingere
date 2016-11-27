@@ -9,7 +9,7 @@ public class Driver
 		// TODO Auto-generated method stub
 		JFrame frame = new JFrame ("Paint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(new Draw());
+		frame.getContentPane().add(new Oval());//change the Oval to Draw to make it draw a line
 		frame.pack();
 		frame.setVisible(true);
 
