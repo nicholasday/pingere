@@ -33,6 +33,8 @@ public class ShapeDraw extends JPanel
 			g2d.setColor(shape.getColor());
 
 			switch(shape.getType()) {
+				case Brush:
+					g2d.draw(new Line2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 				case Ellipse:
 					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 					break;
