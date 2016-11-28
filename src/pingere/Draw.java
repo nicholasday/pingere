@@ -24,6 +24,7 @@ public class Draw extends JPanel
 				currentX = e.getX();
 				currentY = e.getY();
 				if(graphics2D != null)
+				graphics2D.setColor(State.getColor());
 				graphics2D.drawLine(oldX, oldY, currentX, currentY);
 				repaint();
 				oldX = currentX;
@@ -47,10 +48,6 @@ public class Draw extends JPanel
 		graphics2D.setPaint(Color.white);
 		graphics2D.fillRect(0, 0, getSize().width, getSize().height);
 		graphics2D.setPaint(Color.black);
-		repaint();
-	}
-	public void setPaintColor(Color color) {
-		graphics2D.setPaint(color);
 		repaint();
 	}
 
