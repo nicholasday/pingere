@@ -49,5 +49,9 @@ public class Draw extends JPanel
 		graphics2D.setPaint(Color.black);
 		repaint();
 	}
+	public void setPaintColor(Color color) {
+		graphics2D.setPaint(color);
+		repaint();
+	}
 
 }
