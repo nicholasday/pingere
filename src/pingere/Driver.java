@@ -1,5 +1,6 @@
 package pingere;
 import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,12 +21,10 @@ public class Driver
 		JFrame parent = new JFrame("Pingere");
 		Container content = parent.getContentPane();
 		content.setLayout(new BorderLayout());
-		JPanel mainPanel = new JPanel();
 		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		parent.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		Draw draw = new Draw();
-		content.add(draw, BorderLayout.SOUTH);
-		content.add(new ToolbarPanel(), BorderLayout.NORTH);
+		content.add(new Draw(), BorderLayout.CENTER);
+		content.add(new ToolbarPanel(), BorderLayout.PAGE_START);
 		parent.pack();
 		parent.setVisible(true);
 	
