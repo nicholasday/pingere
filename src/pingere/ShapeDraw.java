@@ -72,11 +72,8 @@ public class ShapeDraw extends JPanel
 			endY = event.getY();
 				
 			if (State.getTool() == State.Tool.Brush) {
-				if (!(Math.abs(startX - endX) == 0 || Math.abs(startY - endY) == 0))
-				{
-					Shape line = new Shape(startX, startY, endX, endY, State.getColor());
-					shapes.add(line);
-				}
+				Shape line = new Shape(startX, startY, endX, endY, State.getColor());
+				shapes.add(line);
 
 				startX = endX;
 				startY = endY;
