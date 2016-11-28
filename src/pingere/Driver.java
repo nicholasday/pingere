@@ -19,8 +19,8 @@ public class Driver
 		content.setLayout(new BorderLayout());
 		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		parent.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		Draw draw = new Draw();
-		State.setDrawPanel(draw);
+		ShapeDraw draw = new ShapeDraw();
+		//State.setDrawPanel(draw);
 		content.add(draw, BorderLayout.CENTER);
 		content.add(new ToolbarPanel(), BorderLayout.PAGE_START);
 		parent.pack();

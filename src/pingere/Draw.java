@@ -2,6 +2,10 @@ package pingere;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Draw extends JPanel
 {
@@ -48,6 +52,21 @@ public class Draw extends JPanel
 		g.drawImage(image, 0, 0, null);
 	}
 
+	public void save() {
+		 try {
+             
+	            Robot robot = new Robot();
+	            // Capture the screen shot of the area of the screen defined by the rectangle
+	            BufferedImage bi=robot.createScreenCapture(new Rectangle(getWidth(), getHeight()));
+	            ImageIO.write(bi, "png", new File("/home/mohammad/image/testImage.png"));
+	             
+	        } catch (AWTException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    
+	}
 	public void clear() {
 		graphics2D.setPaint(Color.white);
 		graphics2D.fillRect(0, 0, getSize().width, getSize().height);

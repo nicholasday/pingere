@@ -8,13 +8,14 @@ import java.awt.event.*;
 public class ToolbarPanel extends JPanel
 {
 	
-	JButton brush, eraser, clear, rectangle, ellipse;
+	JButton brush, eraser, clear, rectangle, ellipse, save;
 	JLabel statuslabel;
 	public ToolbarPanel() 
 	{
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
+		save = new JButton("Save");
 		rectangle = new JButton("", createImageIcon("rectangle.png", "rectangle"));
 		ellipse = new JButton("", createImageIcon("ellipse.png", "ellipse"));
 		statuslabel = new JLabel("");
@@ -60,11 +61,20 @@ public class ToolbarPanel extends JPanel
 				statuslabel.setText("Ellipse selected");
 			}
 		});
+		save.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent selected)
+			{
+				State.saveImage();
+				statuslabel.setText("Drawing Saved");
+			}
+		});
 		add(clear);
 		add(brush);
 		add(eraser);
 		add(rectangle);
 		add(ellipse);
+		add(save);
 		add(statuslabel);
 	}
 

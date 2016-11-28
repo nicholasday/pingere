@@ -36,6 +36,9 @@ public class State
 		return tool;
 	}
 	
+	public static void saveImage() {
+		DrawPanel.save();
+	}
 	public static DrawState getDrawState() {
 		return state;
 	}
