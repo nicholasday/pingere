@@ -21,7 +21,6 @@ public class State
 
 	public static void setColor(Color colorInput) {
 		color = colorInput;
-		DrawPanel.setPaintColor(color);
 	}
 	
 	public static Color getColor() {
