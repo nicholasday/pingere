@@ -21,6 +21,7 @@ public class ToolbarPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selected)
 			{
+				State.setColor(Color.black);
 				statuslabel.setText("Brush selected");
 			}
 		});
@@ -28,6 +29,7 @@ public class ToolbarPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selected)
 			{
+				State.setColor(Color.white);
 				statuslabel.setText("Eraser selected");
 			}
 		});
