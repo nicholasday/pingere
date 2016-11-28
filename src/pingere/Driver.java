@@ -11,10 +11,6 @@ import java.awt.event.*;
 
 public class Driver
 {
-
-	public enum State {
-		DRAW, OVAL
-	}
 	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
@@ -23,7 +19,9 @@ public class Driver
 		content.setLayout(new BorderLayout());
 		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		parent.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		content.add(new Draw(), BorderLayout.CENTER);
+		Draw draw = new Draw();
+		State.setDrawPanel(draw);
+		content.add(draw, BorderLayout.CENTER);
 		content.add(new ToolbarPanel(), BorderLayout.PAGE_START);
 		parent.pack();
 		parent.setVisible(true);

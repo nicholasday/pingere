@@ -8,11 +8,12 @@ import java.awt.event.*;
 public class ToolbarPanel extends JPanel
 {
 	
-	JButton brush, eraser;
+	JButton brush, eraser, clear;
 	JLabel statuslabel;
 	public ToolbarPanel() 
 	{
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
+		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
 		statuslabel = new JLabel("");
 		
@@ -30,7 +31,15 @@ public class ToolbarPanel extends JPanel
 				statuslabel.setText("Eraser selected");
 			}
 		});
+		clear.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent selected)
+			{
+				State.setDrawState(State.DrawState.Clear);
+			}
+		});
 		add(brush);
+		add(clear);
 		add(eraser);
 		add(statuslabel);
 	}
