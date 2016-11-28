@@ -25,6 +25,10 @@ public class Draw extends JPanel
 				currentY = e.getY();
 				if(graphics2D != null)
 				graphics2D.setColor(State.getColor());
+				if (State.getColor() == Color.white) 
+					graphics2D.setStroke(new BasicStroke(10));
+				else
+					graphics2D.setStroke(new BasicStroke(1));
 				graphics2D.drawLine(oldX, oldY, currentX, currentY);
 				repaint();
 				oldX = currentX;
