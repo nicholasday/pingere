@@ -34,7 +34,7 @@ public class ShapeDraw extends JPanel
 
 			switch(shape.getType()) {
 				case Brush:
-					g2d.draw(new Line2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
 				case Ellipse:
 					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 					break;
@@ -70,29 +70,25 @@ public class ShapeDraw extends JPanel
 		public void mouseDragged(MouseEvent event) {
 			endX = event.getX();
 			endY = event.getY();
-			
-			x = Math.min(startX, endX);
-			y = Math.min(startY, endY);
-
-			height = Math.abs(startY - endY);
-			width = Math.abs(startX - endX);
-			switch(State.getTool()) {
-				case Brush:
-					Shape line = new Shape(startX, startY, endX, endY, Shape.Type.Brush, State.getColor());
+				
+			if (State.getTool() == State.Tool.Brush) {
+				if (!(Math.abs(startX - endX) == 0 || Math.abs(startY - endY) == 0))
+				{
+					Shape line = new Shape(startX, startY, endX, endY, State.getColor());
 					shapes.add(line);
-					break;
-				case Ellipse:
-					break;
-				case Eraser:
-					break;
-				case Rectangle:
-					break;
-				default:
-					break;
+				}
+
+				startX = endX;
+				startY = endY;
+			} else {
+				x = Math.min(startX, endX);
+				y = Math.min(startY, endY);
+
+				height = Math.abs(startY - endY);
+				width = Math.abs(startX - endX);
 			}
+
 			repaint();
-			endX = startX;
-			endY = startY;
 		}
 	}
 

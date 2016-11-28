@@ -25,14 +25,12 @@ public class Shape
 		this.color = color;
 	}
 	
-	public Shape(int x, int y, int x2, int y2, int width, int height, Type type, Color color) {
+	public Shape(int x, int y, int x2, int y2, Color color) {
 		this.x = x;
 		this.y = y;
 		this.x2 = x2;
 		this.y2 = y2;
-		this.width = width;
-		this.height = height;
-		this.type = type;
+		this.type = Type.Brush;
 		this.color = color;
 	}
 	
