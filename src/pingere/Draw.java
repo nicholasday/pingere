@@ -12,6 +12,7 @@ public class Draw extends JPanel{
 	
 	public Draw(){
 		setDoubleBuffered(false);
+		setPreferredSize(new Dimension(400, 700));
 		addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e){
 				oldX = e.getX();

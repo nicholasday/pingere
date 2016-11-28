@@ -36,12 +36,7 @@ public class Oval2 extends JPanel
 		g2d.setColor(State.getColor());
 		g2d.draw(new Ellipse2D.Double(x, y, width, height));
 		
-		if (i == 1) {
-			g2d.draw(new Rectangle2D.Double(x, y, width, height));
-			i++;
-		} else if (i == 2) {
-			i--;
-		}
+		
 
 	}
 	private class MouseMotionAdapter implements MouseMotionListener {

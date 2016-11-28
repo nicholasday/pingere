@@ -33,6 +33,9 @@ public class ToolbarPanel extends JPanel
 		add(brush);
 		add(eraser);
 		add(statuslabel);
+		setPreferredSize(new Dimension(100, 50));
+		setMaximumSize(new Dimension(100, 50));
+		setMinimumSize(new Dimension(100, 50));
 	}
 
 	private ImageIcon createImageIcon(String url, String description)
