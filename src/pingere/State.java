@@ -12,7 +12,7 @@ public class State
 	private static Draw DrawPanel;
 
 	public enum Tool {
-		Brush, Eraser
+		Brush, Eraser, Ellipse, Rectangle
 	}
 	
 	public enum DrawState {
