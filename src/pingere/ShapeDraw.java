@@ -74,7 +74,23 @@ public class ShapeDraw extends JPanel
 
 			height = Math.abs(startY - endY);
 			width = Math.abs(startX - endX);
+			switch(State.getTool()) {
+				case Brush:
+					Shape line = new Shape(startX, startY, endX, endY, Shape.Type.Brush, State.getColor());
+					shapes.add(line);
+					break;
+				case Ellipse:
+					break;
+				case Eraser:
+					break;
+				case Rectangle:
+					break;
+				default:
+					break;
+			}
 			repaint();
+			endX = startX;
+			endY = startY;
 		}
 	}
 

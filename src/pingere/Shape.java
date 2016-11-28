@@ -14,7 +14,15 @@ public class Shape
 	private Color color;
 	
 	enum Type {
-		Rectangle, Ellipse
+		Rectangle, Ellipse, Brush
+	}
+	public Shape(int x, int y, int width, int height, Type type, Color color) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.type = type;
+		this.color = color;
 	}
 	
 	public Shape(int x, int y, int x2, int y2, int width, int height, Type type, Color color) {
