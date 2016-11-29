@@ -1,18 +1,12 @@
 package pingere;
-import javax.swing.JButton;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.*;
 
-public class Driver
-{
-	public static void main(String[] args)
-	{
+import javax.swing.JFrame;
+
+public class Driver {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		JFrame parent = new JFrame("Pingere");
 		Container content = parent.getContentPane();
@@ -20,13 +14,13 @@ public class Driver
 		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		parent.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		ShapeDraw draw = new ShapeDraw();
-		//State.setDrawPanel(draw);
+		// State.setDrawPanel(draw);
+		State.setShapeDrawPanel(draw);
 		content.add(draw, BorderLayout.CENTER);
 		content.add(new ToolbarPanel(), BorderLayout.PAGE_START);
 		parent.pack();
 		parent.setVisible(true);
-	
+
 	}
 
-	
 }

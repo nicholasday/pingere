@@ -1,13 +1,20 @@
 package pingere;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import javax.swing.*;
 
-public class ShapeDraw extends JPanel
-{
+import javax.swing.JPanel;
+
+public class ShapeDraw extends JPanel {
 	private int startX;
 	private int startY;
 	private int endX;
@@ -15,9 +22,9 @@ public class ShapeDraw extends JPanel
 	private int x, y;
 	private int height;
 	private int width;
-	
+
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
-	
+
 	public ShapeDraw() {
 		setBackground(Color.white);
 		addMouseListener(new MouseAdapter());
@@ -27,61 +34,63 @@ public class ShapeDraw extends JPanel
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D) g;
 
-		
-		for (Shape shape: shapes) {
+		for (Shape shape : shapes) {
 			g2d.setColor(shape.getColor());
-			
-			switch(shape.getType()) {
-				case Brush:
-					g2d.setStroke(new BasicStroke(1));
-					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-					break;
-				case Eraser:
-					g2d.setStroke(shape.getStroke());
-					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-					break;
-				case Ellipse:
-					g2d.setStroke(new BasicStroke(1));
-					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-					break;
-				case Rectangle:
-					g2d.setStroke(new BasicStroke(1));
-					g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-					break;
-				default:
-					break;
+
+			switch (shape.getType()) {
+			case Brush:
+				g2d.setStroke(new BasicStroke(1));
+				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+				break;
+			case Eraser:
+				g2d.setStroke(shape.getStroke());
+				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+				break;
+			case Ellipse:
+				g2d.setStroke(new BasicStroke(1));
+				g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+				break;
+			case Rectangle:
+				g2d.setStroke(new BasicStroke(1));
+				g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+				break;
+			case Clear:
+				g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+			default:
+				break;
 			}
 		}
 
 		g2d.setColor(State.getColor());
-		
-		switch(State.getTool()) {
-			case Brush:
-				break;
-			case Ellipse:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Ellipse2D.Double(x, y, width, height));
-				break;
-			case Eraser:
-				break;
-			case Rectangle:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Rectangle2D.Double(x, y, width, height));
-				break;
-			default:
-				break;
+
+		switch (State.getTool()) {
+		case Brush:
+			break;
+		case Ellipse:
+			g2d.setStroke(new BasicStroke(1));
+			g2d.draw(new Ellipse2D.Double(x, y, width, height));
+			break;
+		case Eraser:
+			break;
+		case Rectangle:
+			g2d.setStroke(new BasicStroke(1));
+			g2d.draw(new Rectangle2D.Double(x, y, width, height));
+			break;
+		default:
+			break;
 		}
 	}
 
 	private class MouseMotionAdapter implements MouseMotionListener {
-		public void mouseMoved(MouseEvent event) { }
+		public void mouseMoved(MouseEvent event) {
+		}
 
 		public void mouseDragged(MouseEvent event) {
 			endX = event.getX();
 			endY = event.getY();
-				
+
 			if (State.getTool() == State.Tool.Brush) {
 				Shape line = new Shape(startX, startY, endX, endY, State.getColor());
 				shapes.add(line);
@@ -91,7 +100,7 @@ public class ShapeDraw extends JPanel
 			} else if (State.getTool() == State.Tool.Eraser) {
 				Shape erased = new Shape(startX, startY, endX, endY, State.getColor(), State.getStroke());
 				shapes.add(erased);
-				
+
 				startX = endX;
 				startY = endY;
 			} else {
@@ -107,26 +116,31 @@ public class ShapeDraw extends JPanel
 	}
 
 	private class MouseAdapter implements MouseListener {
-		public void mouseClicked(MouseEvent event) { }
-		public void mouseEntered(MouseEvent event) { }
-		public void mouseExited(MouseEvent event) { }
+		public void mouseClicked(MouseEvent event) {
+		}
 
-		public void mouseReleased(MouseEvent event) { 
-			switch(State.getTool()) {
-				case Brush:
-					break;
-				case Ellipse:
-					Shape ellipse = new Shape(x, y, width, height, Shape.Type.Ellipse, State.getColor());
-					shapes.add(ellipse);
-					break;
-				case Eraser:
-					break;
-				case Rectangle:
-					Shape rectangle = new Shape(x, y, width, height, Shape.Type.Rectangle, State.getColor());
-					shapes.add(rectangle);
-					break;
-				default:
-					break;
+		public void mouseEntered(MouseEvent event) {
+		}
+
+		public void mouseExited(MouseEvent event) {
+		}
+
+		public void mouseReleased(MouseEvent event) {
+			switch (State.getTool()) {
+			case Brush:
+				break;
+			case Ellipse:
+				Shape ellipse = new Shape(x, y, width, height, Shape.Type.Ellipse, State.getColor());
+				shapes.add(ellipse);
+				break;
+			case Eraser:
+				break;
+			case Rectangle:
+				Shape rectangle = new Shape(x, y, width, height, Shape.Type.Rectangle, State.getColor());
+				shapes.add(rectangle);
+				break;
+			default:
+				break;
 			}
 		}
 
@@ -134,5 +148,11 @@ public class ShapeDraw extends JPanel
 			startX = event.getX();
 			startY = event.getY();
 		}
+	}
+
+	public void clear() {
+		Shape clear = new Shape(0, 0, getSize().width, getSize().height, Shape.Type.Clear, Color.white);
+		shapes.add(clear);
+		repaint();
 	}
 }

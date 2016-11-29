@@ -1,17 +1,22 @@
 package pingere;
 
-import javax.swing.JFrame;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ToolbarPanel extends JPanel
-{
-	
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ToolbarPanel extends JPanel {
+
 	JButton brush, eraser, clear, rectangle, ellipse, save;
 	JLabel statuslabel;
-	public ToolbarPanel() 
-	{
+
+	public ToolbarPanel() {
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
@@ -19,55 +24,45 @@ public class ToolbarPanel extends JPanel
 		rectangle = new JButton("", createImageIcon("rectangle.png", "rectangle"));
 		ellipse = new JButton("", createImageIcon("ellipse.png", "ellipse"));
 		statuslabel = new JLabel("");
-		
-		brush.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
-				State.setColor(Color.black); 
+
+		brush.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
+				State.setColor(Color.black);
 				State.setTool(State.Tool.Brush);
 				statuslabel.setText("Brush selected");
 			}
 		});
-		eraser.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
+		eraser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
 				State.setColor(Color.white);
 				State.setStroke(new BasicStroke(20));
 				State.setTool(State.Tool.Eraser);
 				statuslabel.setText("Eraser selected");
 			}
 		});
-		clear.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
-				State.setDrawState(State.DrawState.Clear);
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
+				// State.setDrawState(State.DrawState.Clear);
+				State.clear();
+				statuslabel.setText("Image cleared");
 			}
 		});
-		rectangle.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
-				State.setColor(Color.black); 
+		rectangle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
+				State.setColor(Color.black);
 				State.setTool(State.Tool.Rectangle);
 				statuslabel.setText("Rectangle selected");
 			}
 		});
-		ellipse.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
-				State.setColor(Color.black); 
+		ellipse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
+				State.setColor(Color.black);
 				State.setTool(State.Tool.Ellipse);
 				statuslabel.setText("Ellipse selected");
 			}
 		});
-		save.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent selected)
-			{
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
 				State.saveImage();
 				statuslabel.setText("Drawing Saved");
 			}
@@ -81,8 +76,7 @@ public class ToolbarPanel extends JPanel
 		add(statuslabel);
 	}
 
-	private ImageIcon createImageIcon(String url, String description)
-	{
+	private ImageIcon createImageIcon(String url, String description) {
 		java.net.URL imgURL = getClass().getResource(url);
 		return new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 	}
