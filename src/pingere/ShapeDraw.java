@@ -11,10 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
-import pingere.Shape.Type;
 
 public class ShapeDraw extends JPanel {
 	private int startX;
@@ -68,21 +65,23 @@ public class ShapeDraw extends JPanel {
 
 		g2d.setColor(State.getColor());
 
-		switch (State.getTool()) {
-		case Brush:
-			break;
-		case Ellipse:
-			g2d.setStroke(new BasicStroke(1));
-			g2d.draw(new Ellipse2D.Double(x, y, width, height));
-			break;
-		case Eraser:
-			break;
-		case Rectangle:
-			g2d.setStroke(new BasicStroke(1));
-			g2d.draw(new Rectangle2D.Double(x, y, width, height));
-			break;
-		default:
-			break;
+		if (!State.isClear()) {
+			switch (State.getTool()) {
+			case Brush:
+				break;
+			case Ellipse:
+				g2d.setStroke(new BasicStroke(1));
+				g2d.draw(new Ellipse2D.Double(x, y, width, height));
+				break;
+			case Eraser:
+				break;
+			case Rectangle:
+				g2d.setStroke(new BasicStroke(1));
+				g2d.draw(new Rectangle2D.Double(x, y, width, height));
+				break;
+			default:
+				break;
+			}
 		}
 	}
 

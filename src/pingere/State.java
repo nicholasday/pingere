@@ -10,6 +10,7 @@ public class State {
 	private static DrawState state = DrawState.Draw;
 	private static Draw DrawPanel;
 	private static ShapeDraw ShapeDrawPanel;
+	private static boolean clear = false;
 
 	public enum Tool {
 		Brush, Eraser, Ellipse, Rectangle, Clear
@@ -45,6 +46,15 @@ public class State {
 
 	public static void clear() {
 		ShapeDrawPanel.clear();
+		clear = true;
+	}
+	
+	public static boolean isClear() {
+		boolean prevClear = clear;
+		if (clear) {
+			clear = false;
+		}
+		return prevClear;
 	}
 
 	public static void saveImage() {
