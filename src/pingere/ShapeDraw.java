@@ -58,6 +58,9 @@ public class ShapeDraw extends JPanel {
 				g2d.setStroke(new BasicStroke(1));
 				g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 				break;
+			case Clear:
+				g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+				break;
 			default:
 				break;
 			}
@@ -65,30 +68,21 @@ public class ShapeDraw extends JPanel {
 
 		g2d.setColor(State.getColor());
 
-		if (!(State.getTool() == State.Tool.Clear)) {
-			switch (State.getTool()) {
-			case Brush:
-				break;
-			case Ellipse:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Ellipse2D.Double(x, y, width, height));
-				break;
-			case Eraser:
-				break;
-			case Rectangle:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Rectangle2D.Double(x, y, width, height));
-				break;
-			default:
-				break;
-			}
-		} else {
-			for (Shape shape : shapes) {
-				g2d.setColor(shape.getColor());
-				if (shape.getType() == Type.Clear)
-					g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-
-			}
+		switch (State.getTool()) {
+		case Brush:
+			break;
+		case Ellipse:
+			g2d.setStroke(new BasicStroke(1));
+			g2d.draw(new Ellipse2D.Double(x, y, width, height));
+			break;
+		case Eraser:
+			break;
+		case Rectangle:
+			g2d.setStroke(new BasicStroke(1));
+			g2d.draw(new Rectangle2D.Double(x, y, width, height));
+			break;
+		default:
+			break;
 		}
 	}
 
