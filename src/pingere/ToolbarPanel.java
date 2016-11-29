@@ -43,6 +43,7 @@ public class ToolbarPanel extends JPanel {
 		clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				// State.setDrawState(State.DrawState.Clear);
+				State.setTool(State.Tool.Clear);
 				State.clear();
 				statuslabel.setText("Image cleared");
 			}
