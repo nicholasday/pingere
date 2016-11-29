@@ -50,6 +50,7 @@ public class ToolbarPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selected)
 			{
+				State.setColor(Color.black); 
 				State.setTool(State.Tool.Rectangle);
 				statuslabel.setText("Rectangle selected");
 			}
@@ -58,6 +59,7 @@ public class ToolbarPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selected)
 			{
+				State.setColor(Color.black); 
 				State.setTool(State.Tool.Ellipse);
 				statuslabel.setText("Ellipse selected");
 			}

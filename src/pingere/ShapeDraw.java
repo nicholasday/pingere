@@ -29,11 +29,13 @@ public class ShapeDraw extends JPanel
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 
+		
 		for (Shape shape: shapes) {
 			g2d.setColor(shape.getColor());
-
+			
 			switch(shape.getType()) {
 				case Brush:
+					g2d.setStroke(new BasicStroke(1));
 					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
 					break;
 				case Eraser:
@@ -41,9 +43,11 @@ public class ShapeDraw extends JPanel
 					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
 					break;
 				case Ellipse:
+					g2d.setStroke(new BasicStroke(1));
 					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 					break;
 				case Rectangle:
+					g2d.setStroke(new BasicStroke(1));
 					g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 					break;
 				default:
@@ -57,11 +61,13 @@ public class ShapeDraw extends JPanel
 			case Brush:
 				break;
 			case Ellipse:
+				g2d.setStroke(new BasicStroke(1));
 				g2d.draw(new Ellipse2D.Double(x, y, width, height));
 				break;
 			case Eraser:
 				break;
 			case Rectangle:
+				g2d.setStroke(new BasicStroke(1));
 				g2d.draw(new Rectangle2D.Double(x, y, width, height));
 				break;
 			default:
