@@ -35,6 +35,11 @@ public class ShapeDraw extends JPanel
 			switch(shape.getType()) {
 				case Brush:
 					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
+				case Eraser:
+					g2d.setStroke(shape.getStroke());
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
 				case Ellipse:
 					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 					break;
@@ -75,6 +80,12 @@ public class ShapeDraw extends JPanel
 				Shape line = new Shape(startX, startY, endX, endY, State.getColor());
 				shapes.add(line);
 
+				startX = endX;
+				startY = endY;
+			} else if (State.getTool() == State.Tool.Eraser) {
+				Shape erased = new Shape(startX, startY, endX, endY, State.getColor(), State.getStroke());
+				shapes.add(erased);
+				
 				startX = endX;
 				startY = endY;
 			} else {

@@ -34,6 +34,7 @@ public class ToolbarPanel extends JPanel
 			public void actionPerformed(ActionEvent selected)
 			{
 				State.setColor(Color.white);
+				State.setStroke(new BasicStroke(20));
 				State.setTool(State.Tool.Eraser);
 				statuslabel.setText("Eraser selected");
 			}

@@ -73,5 +73,9 @@ public class Draw extends JPanel
 		graphics2D.setPaint(Color.black);
 		repaint();
 	}
+	
+	public void stroke(BasicStroke stroke) {
+		graphics2D.setStroke(stroke);
+	}
 
 }

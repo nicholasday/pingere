@@ -1,5 +1,6 @@
 package pingere;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 
 import javax.swing.JPanel;
@@ -7,6 +8,7 @@ import javax.swing.JPanel;
 public class State
 {
 	private static Color color = Color.blue;
+	private static BasicStroke stroke;
 	private static Tool tool = Tool.Brush;
 	private static DrawState state = DrawState.Draw;
 	private static Draw DrawPanel;
@@ -27,6 +29,13 @@ public class State
 		return color;
 	}
 	
+	public static void setStroke(BasicStroke strokeInput) {
+		stroke = strokeInput;
+	}
+	
+	public static BasicStroke getStroke() {
+		return stroke;
+	}
 	public static void setTool(Tool toolInput) {
 		tool = toolInput;
 	}
