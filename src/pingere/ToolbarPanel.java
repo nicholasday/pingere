@@ -18,7 +18,7 @@ public class ToolbarPanel extends JPanel {
 	public ToolbarPanel() {
 
 		chooseColor = new JButton("Choose Color");
-		chafic = new JButton("Chafic");
+		chafic = new JButton("???");
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));

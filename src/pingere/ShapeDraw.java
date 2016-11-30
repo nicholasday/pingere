@@ -34,7 +34,7 @@ public class ShapeDraw extends JPanel {
 
 	public ShapeDraw() {
 		try {
-			chafic = ImageIO.read(new File("paint_brush.png"));
+			chafic = ImageIO.read(new File("Chafic.png"));
 		} catch (IOException ie) {
 			ie.printStackTrace();
 		}
@@ -157,10 +157,6 @@ public class ShapeDraw extends JPanel {
 				Shape rectangle = new Shape(x, y, width, height, Shape.Type.Rectangle, State.getColor());
 				shapes.add(rectangle);
 				break;
-			case Chafic:
-				Shape chafic = new Shape(getX(), getY());
-				shapes.add(chafic);
-				break;
 			default:
 				break;
 			}
@@ -169,6 +165,11 @@ public class ShapeDraw extends JPanel {
 		public void mousePressed(MouseEvent event) {
 			startX = event.getX();
 			startY = event.getY();
+			if (State.getTool() == State.Tool.Chafic) {
+				Shape chafic = new Shape(event.getX(), event.getY());
+				shapes.add(chafic);
+				repaint();
+			}
 		}
 	}
 
