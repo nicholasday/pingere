@@ -38,7 +38,6 @@ public class ToolbarPanel extends JPanel {
 
 		brush.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setColor(Color.black);
 				State.setTool(State.Tool.Brush);
 				statuslabel.setText("Brush selected");
 			}
@@ -62,14 +61,12 @@ public class ToolbarPanel extends JPanel {
 		});
 		rectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setColor(Color.black);
 				State.setTool(State.Tool.Rectangle);
 				statuslabel.setText("Rectangle selected");
 			}
 		});
 		ellipse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setColor(Color.black);
 				State.setTool(State.Tool.Ellipse);
 				statuslabel.setText("Ellipse selected");
 			}
