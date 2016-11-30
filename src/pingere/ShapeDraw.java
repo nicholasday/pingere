@@ -10,8 +10,12 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import pingere.Shape.Type;
@@ -26,8 +30,14 @@ public class ShapeDraw extends JPanel {
 	private int width;
 
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
+	BufferedImage chafic;
 
 	public ShapeDraw() {
+		try {
+			chafic = ImageIO.read(new File("paint_brush.png"));
+		} catch (IOException ie) {
+			ie.printStackTrace();
+		}
 		setBackground(Color.white);
 		addMouseListener(new MouseAdapter());
 		addMouseMotionListener(new MouseMotionAdapter());
@@ -62,6 +72,8 @@ public class ShapeDraw extends JPanel {
 			case Clear:
 				g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
 				break;
+			case Chafic:
+				g2d.drawImage(chafic, shape.getX(), shape.getY(), null);
 			default:
 				break;
 			}
@@ -144,6 +156,10 @@ public class ShapeDraw extends JPanel {
 			case Rectangle:
 				Shape rectangle = new Shape(x, y, width, height, Shape.Type.Rectangle, State.getColor());
 				shapes.add(rectangle);
+				break;
+			case Chafic:
+				Shape chafic = new Shape(getX(), getY());
+				shapes.add(chafic);
 				break;
 			default:
 				break;

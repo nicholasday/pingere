@@ -15,7 +15,7 @@ public class Shape {
 	private BasicStroke stroke;
 
 	enum Type {
-		Rectangle, Ellipse, Brush, Eraser, Clear
+		Rectangle, Ellipse, Brush, Eraser, Clear, Chafic
 	}
 
 	public Shape(int x, int y, int width, int height, Type type, Color color) {
@@ -45,6 +45,12 @@ public class Shape {
 		this.type = Type.Eraser;
 		this.color = color;
 		this.stroke = stroke;
+	}
+
+	public Shape(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.type = Type.Chafic;
 	}
 
 	public int getX() {

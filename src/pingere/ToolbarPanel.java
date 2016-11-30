@@ -12,18 +12,13 @@ import javax.swing.JPanel;
 
 public class ToolbarPanel extends JPanel {
 
-	JButton brush, eraser, clear, rectangle, ellipse, save;
+	JButton brush, eraser, clear, rectangle, ellipse, save, chooseColor, chafic;
 	JLabel statuslabel;
 
 	public ToolbarPanel() {
 
-		JButton chooseColor = new JButton("Choose Color");
-		chooseColor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				State.colorChooser();
-			}
-		});
-
+		chooseColor = new JButton("Choose Color");
+		chafic = new JButton("Chafic");
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
@@ -72,6 +67,16 @@ public class ToolbarPanel extends JPanel {
 				statuslabel.setText("Drawing Saved");
 			}
 		});
+		chooseColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				State.colorChooser();
+			}
+		});
+		chafic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				State.setTool(State.Tool.Chafic);
+			}
+		});
 		add(clear);
 		add(brush);
 		add(eraser);
@@ -79,6 +84,7 @@ public class ToolbarPanel extends JPanel {
 		add(ellipse);
 		// add(save);
 		add(chooseColor);
+		add(chafic);
 		add(statuslabel);
 	}
 

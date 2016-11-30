@@ -17,7 +17,7 @@ public class State {
 	private static JFrame parentFrame;
 
 	public enum Tool {
-		Brush, Eraser, Ellipse, Rectangle, Clear
+		Brush, Eraser, Ellipse, Rectangle, Clear, Chafic
 	}
 
 	public enum DrawState {
@@ -52,7 +52,7 @@ public class State {
 		ShapeDrawPanel.clear();
 		clear = true;
 	}
-	
+
 	public static boolean isClear() {
 		boolean prevClear = clear;
 		if (clear) {
@@ -88,12 +88,15 @@ public class State {
 	public static ShapeDraw getShapeDrawPanel() {
 		return ShapeDrawPanel;
 	}
+
 	public static void colorChooser() {
-	color = JColorChooser.showDialog(parentFrame, "Choose color", Color.white);
+		color = JColorChooser.showDialog(parentFrame, "Choose color", Color.white);
 	}
+
 	public static void setParent(JFrame parent) {
 		parentFrame = parent;
 	}
+
 	public static JFrame getParent() {
 		return parentFrame;
 	}
