@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JColorChooser;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,16 @@ public class ToolbarPanel extends JPanel {
 	JLabel statuslabel;
 
 	public ToolbarPanel() {
+		
+		JButton chooseColor = new JButton("Choose Color");
+		chooseColor.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				State.colorChooser();
+			}
+		});
+		
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
@@ -75,8 +86,9 @@ public class ToolbarPanel extends JPanel {
 		add(rectangle);
 		add(ellipse);
 		add(save);
+		add(chooseColor);
 		add(statuslabel);
-	}
+		}
 
 	private ImageIcon createImageIcon(String url, String description) {
 		java.net.URL imgURL = getClass().getResource(url);

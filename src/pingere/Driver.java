@@ -18,6 +18,7 @@ public class Driver {
 		State.setShapeDrawPanel(draw);
 		content.add(draw, BorderLayout.CENTER);
 		content.add(new ToolbarPanel(), BorderLayout.PAGE_START);
+		State.setParent(parent);
 		parent.pack();
 		parent.setVisible(true);
 

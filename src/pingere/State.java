@@ -3,14 +3,18 @@ package pingere;
 import java.awt.BasicStroke;
 import java.awt.Color;
 
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+
 public class State {
-	private static Color color = Color.blue;
+	private static Color color = Color.black;
 	private static BasicStroke stroke;
 	private static Tool tool = Tool.Brush;
 	private static DrawState state = DrawState.Draw;
 	private static Draw DrawPanel;
 	private static ShapeDraw ShapeDrawPanel;
 	private static boolean clear = false;
+	private static JFrame parentFrame;
 
 	public enum Tool {
 		Brush, Eraser, Ellipse, Rectangle, Clear
@@ -83,5 +87,14 @@ public class State {
 
 	public static ShapeDraw getShapeDrawPanel() {
 		return ShapeDrawPanel;
+	}
+	public static void colorChooser() {
+	color = JColorChooser.showDialog(parentFrame, "Choose color", Color.white);
+	}
+	public static void setParent(JFrame parent) {
+		parentFrame = parent;
+	}
+	public static JFrame getParent() {
+		return parentFrame;
 	}
 }
