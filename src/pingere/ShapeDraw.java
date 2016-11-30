@@ -11,7 +11,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
+import pingere.Shape.Type;
 
 public class ShapeDraw extends JPanel {
 	private int startX;
@@ -37,7 +40,8 @@ public class ShapeDraw extends JPanel {
 
 		for (Shape shape : shapes) {
 			g2d.setColor(shape.getColor());
-
+			if (shape.getType() == Type.Eraser)
+				g2d.setColor(Color.white);
 			switch (shape.getType()) {
 			case Brush:
 				g2d.setStroke(new BasicStroke(1));
