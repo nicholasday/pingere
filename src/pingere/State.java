@@ -20,7 +20,7 @@ import javax.swing.JFrame;
 public class State {
 	// We use static so that 
 	private static Color color = Color.black;
-	private static BasicStroke stroke;
+	private static int strokeSize;
 	private static Tool tool = Tool.Brush;
 	private static DrawPanel DrawPanel;
 	private static boolean clear = false;
@@ -38,12 +38,21 @@ public class State {
 		return color;
 	}
 
-	public static void setStroke(BasicStroke strokeInput) {
-		stroke = strokeInput;
+	public static void setStroke(int strokeInput) {
+		strokeSize = strokeInput;
 	}
 
-	public static BasicStroke getStroke() {
-		return stroke;
+	public static int getStroke() {
+		return strokeSize;
+	}
+	
+	public static void increaseStroke() {
+		strokeSize = strokeSize + 5;
+	}
+
+	public static void decreaseStroke() {
+		if (strokeSize > 1) 
+			strokeSize = strokeSize - 5;
 	}
 
 	public static void setTool(Tool toolInput) {

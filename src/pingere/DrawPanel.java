@@ -110,11 +110,11 @@ public class DrawPanel extends JPanel {
 			switch (shape.getType()) {
 				case Brush:
 					// Sets the p
-					g2d.setStroke(new BasicStroke(1));
+					g2d.setStroke(new BasicStroke(shape.getStroke()));
 					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
 					break;
 				case Eraser:
-					g2d.setStroke(shape.getStroke());
+					g2d.setStroke(new BasicStroke(shape.getStroke()));
 					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
 					break;
 				case Ellipse:
@@ -142,13 +142,13 @@ public class DrawPanel extends JPanel {
 			case Brush:
 				break;
 			case Ellipse:
-				g2d.setStroke(new BasicStroke(1));
+				g2d.setStroke(new BasicStroke(State.getStroke()));
 				g2d.draw(new Ellipse2D.Double(x, y, width, height));
 				break;
 			case Eraser:
 				break;
 			case Rectangle:
-				g2d.setStroke(new BasicStroke(1));
+				g2d.setStroke(new BasicStroke(State.getStroke()));
 				g2d.draw(new Rectangle2D.Double(x, y, width, height));
 				break;
 			default:
@@ -166,13 +166,13 @@ public class DrawPanel extends JPanel {
 			endY = event.getY();
 
 			if (State.getTool() == State.Tool.Brush) {
-				Shape line = new Shape(startX, startY, endX, endY, State.getColor());
+				Shape line = new Shape(startX, startY, endX, endY, State.getColor(), Shape.Type.Brush, State.getStroke());
 				shapes.add(line);
 
 				startX = endX;
 				startY = endY;
 			} else if (State.getTool() == State.Tool.Eraser) {
-				Shape erased = new Shape(startX, startY, endX, endY, State.getColor(), State.getStroke());
+				Shape erased = new Shape(startX, startY, endX, endY, State.getColor(), Shape.Type.Eraser, State.getStroke());
 				shapes.add(erased);
 
 				startX = endX;

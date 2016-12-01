@@ -12,8 +12,14 @@ import javax.swing.JPanel;
 
 public class ToolbarPanel extends JPanel {
 
-	JButton brush, eraser, clear, rectangle, ellipse, save, chooseColor, chafic; //making buttons for each of the tools
-	JLabel statuslabel; //helps the user know which tool is selected
+	// JButtons for all of the tools
+	JButton brush, eraser, clear, rectangle, ellipse, chooseColor, chafic;
+	
+	// JButtons for the stroke size options
+	JButton increaseStroke, decreaseStroke;
+
+	// helps the user know which tool is selected
+	JLabel statuslabel;
 
 	public ToolbarPanel() {
 		//creating all of the buttons 
@@ -25,18 +31,27 @@ public class ToolbarPanel extends JPanel {
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
 		rectangle = new JButton("", createImageIcon("rectangle.png", "rectangle"));
 		ellipse = new JButton("", createImageIcon("ellipse.png", "ellipse"));
+		increaseStroke = new JButton("+");
+		decreaseStroke = new JButton("-");
 		statuslabel = new JLabel("");
 
 		//Now adding ActionListeners for all of the buttons
-		brush.addActionListener(new ActionListener() {
+		increaseStroke.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setTool(State.Tool.Brush); //Uses the function in State to set the tool
-				statuslabel.setText("Brush selected");
+				State.increaseStroke();
+				statuslabel.setText("Brush size increased");
+			}
+		});
+
+		decreaseStroke.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selected) {
+				State.decreaseStroke();
+				statuslabel.setText("Brush size decreased");
 			}
 		});
 		eraser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setStroke(new BasicStroke(20)); //Makes the stroke size bigger for the eraser 
+				State.setStroke(20); //Makes the stroke size bigger for the eraser 
 				State.setTool(State.Tool.Eraser); //Uses the function in State to set the tool
 				statuslabel.setText("Eraser selected");
 			}
@@ -80,6 +95,8 @@ public class ToolbarPanel extends JPanel {
 		add(ellipse);
 		add(chooseColor);
 		add(chafic);
+		add(increaseStroke);
+		add(decreaseStroke);
 		add(statuslabel);
 	}
 	//resizes the images by scaling them down to 20 by 20, so they look like a button

@@ -29,7 +29,7 @@ public class Shape {
 	private Color color;
 	
 	// Stores the line width of the shape
-	private BasicStroke stroke;
+	private int stroke;
 
 	// This enum serves as a list of shapes we can store
 	public enum Type {
@@ -57,16 +57,16 @@ public class Shape {
 		this.y2 = y2;
 		this.type = Type.Brush;
 		this.color = color;
-		this.stroke = new BasicStroke(1);
+		this.stroke = 1;
 	}
 
 	// This is the constructor for lines that width's that change
-	public Shape(int x, int y, int x2, int y2, Color color, BasicStroke stroke) {
+	public Shape(int x, int y, int x2, int y2, Color color, Type type, int stroke) {
 		this.x = x;
 		this.y = y;
 		this.x2 = x2;
 		this.y2 = y2;
-		this.type = Type.Eraser;
+		this.type = type;
 		this.color = color;
 		this.stroke = stroke;
 	}
@@ -119,7 +119,7 @@ public class Shape {
 		return color;
 	}
 
-	public BasicStroke getStroke() {
+	public int getStroke() {
 		return stroke;
 	}
 }
