@@ -1,8 +1,15 @@
 package pingere;
 
+import java.awt.AWTException;
 // Used to set the color of the shapes drawn
 import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 // Used for a pop up dialog that lets the user
 // choose any color they want
 import javax.swing.JColorChooser;
@@ -83,10 +90,6 @@ public class State {
 		clear = true;
 	}
 
-	public static void save() {
-		DrawPanel.save();
-	}
-
 	// Tests the state of the clear for DrawPanel
 	// so that it doesn't draw the latest drawn shape
 	// before the clear
@@ -120,6 +123,24 @@ public class State {
 	// can pass that as an argument to JColorChooser
 	public static void setParent(JFrame parent) {
 		parentFrame = parent;
+	}
+
+	public static void save() {
+		try {
+
+			Robot robot = new Robot();
+			// Capture the screen shot of the area of the screen defined by the
+			// rectangle
+			BufferedImage bi = robot.createScreenCapture(new Rectangle((int) DrawPanel.getLocationOnScreen().getX(),
+					(int) DrawPanel.getLocationOnScreen().getY(), (int) DrawPanel.getBounds().getWidth(),
+					(int) DrawPanel.getBounds().getHeight()));
+			ImageIO.write(bi, "png", new File("/home/mohammad/image/testImage1.png"));
+
+		} catch (AWTException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Getter for the parent JFrame

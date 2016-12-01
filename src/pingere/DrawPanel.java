@@ -1,6 +1,5 @@
 package pingere;
 
-import java.awt.AWTException;
 // BasicStroke is used to increase the size of the line
 import java.awt.BasicStroke;
 // Color is used to change the color of the line and shapes and JColorChooser
@@ -8,8 +7,6 @@ import java.awt.Color;
 // Graphics and Graphics2D are used for their functions in drawing with JPanels
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Robot;
 // These are used to capture the position and status of the Mouse (dragging, clicking, etc)
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -297,19 +294,4 @@ public class DrawPanel extends JPanel {
 		repaint();
 	}
 
-	public void save() {
-		try {
-
-			Robot robot = new Robot();
-			// Capture the screen shot of the area of the screen defined by the
-			// rectangle
-			BufferedImage bi = robot.createScreenCapture(new Rectangle(getSize().width, getSize().height));
-			ImageIO.write(bi, "png", new File("/home/mohammad/image/testImage1.png"));
-
-		} catch (AWTException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
