@@ -61,10 +61,6 @@ public class State {
 		return prevClear;
 	}
 
-	public static void saveImage() {
-		DrawPanel.save();
-	}
-
 	public static DrawState getDrawState() {
 		return state;
 	}
