@@ -36,6 +36,9 @@ public class Shape {
 		Rectangle, Ellipse, Brush, Eraser, Clear, Chafic
 	}
 	
+	//-------------------------//
+	// 		Constructors 	   //
+	//-------------------------//
 	// We have multiple constructors because we have many different types
 	// of shapes and want to support them all without passing in null values
 

@@ -18,12 +18,17 @@ public class ToolbarPanel extends JPanel {
 	// JButtons for the stroke size options
 	JButton increaseStroke, decreaseStroke;
 
-	// helps the user know which tool is selected
+	// Shows the user which tool has been selected
 	JLabel statuslabel;
 
+	// Sets up the ToolbarPanel
 	public ToolbarPanel() {
-		//creating all of the buttons 
-		//createImageIcon is what allows the buttons to be displayed as an image, rather than text
+		//-----------------------------//
+		// 	  Button Initialization    //
+		//-----------------------------//
+		// Creates all of the buttons and sets their functions
+		// createImageIcon is what allows the buttons to be displayed as an image, rather than text
+
 		chooseColor = new JButton("Choose Color");
 		chafic = new JButton("???");//hidden surprise
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
@@ -35,7 +40,13 @@ public class ToolbarPanel extends JPanel {
 		decreaseStroke = new JButton("-");
 		statuslabel = new JLabel("");
 
-		//Now adding ActionListeners for all of the buttons
+		//----------------------------------//
+		// 		    Action Listeners        //
+		//----------------------------------//
+
+		// Now adding ActionListeners for all of the buttons to listen for button clicks
+		
+		// Increases the stroke by 5
 		increaseStroke.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				State.increaseStroke();
@@ -43,12 +54,15 @@ public class ToolbarPanel extends JPanel {
 			}
 		});
 
+		// Decreases the stroke by 5
 		decreaseStroke.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				State.decreaseStroke();
 				statuslabel.setText("Brush size decreased");
 			}
 		});
+		
+		// Sets the eraser tool with a larger stroke size
 		eraser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				State.setStroke(20); //Makes the stroke size bigger for the eraser 
@@ -56,8 +70,12 @@ public class ToolbarPanel extends JPanel {
 				statuslabel.setText("Eraser selected");
 			}
 		});
+		
+		// Clears the image
 		clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
+				// We have to get the previous tool so that we can 
+				// set it back after we set clear as the tool
 				State.Tool prevTool = State.getTool();
 				State.setTool(State.Tool.Clear);
 				State.clear();
@@ -65,29 +83,40 @@ public class ToolbarPanel extends JPanel {
 				State.setTool(prevTool);
 			}
 		});
+		
+		// Selects the rectangle tool
 		rectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				State.setTool(State.Tool.Rectangle); ////Uses the function in State to set the tool
 				statuslabel.setText("Rectangle selected");
 			}
 		});
+		
+		
+		// Selects the ellipse tool
 		ellipse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
 				State.setTool(State.Tool.Ellipse); ////Uses the function in State to set the tool
 				statuslabel.setText("Ellipse selected");
 			}
 		});
+		
+		// Calls State.colorChooser() which launches JColorChooser
+		// and sets the return value as State.color
 		chooseColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				State.colorChooser();
 			}
 		});
+		
+		// Adds that special image button to the ToolbarPanel
 		chafic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				State.setTool(State.Tool.Chafic);
 			}
 		});
-		//adding all of the buttons onto the frame
+
+		// Adds all of the above buttons to the program
 		add(clear);
 		add(brush);
 		add(eraser);
@@ -99,7 +128,9 @@ public class ToolbarPanel extends JPanel {
 		add(decreaseStroke);
 		add(statuslabel);
 	}
-	//resizes the images by scaling them down to 20 by 20, so they look like a button
+
+	// Resizes the images by scaling them down to 20 by 20, so they look like a button
+	// Also loads the image for use as the corresponding JButton image
 	private ImageIcon createImageIcon(String url, String description) {
 		java.net.URL imgURL = getClass().getResource(url);
 		return new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
