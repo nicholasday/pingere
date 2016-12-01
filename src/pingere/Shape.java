@@ -1,8 +1,5 @@
 package pingere;
 
-// Used to save the line width
-import java.awt.BasicStroke;
-
 // Used to save the color of the shape
 import java.awt.Color;
 
@@ -11,23 +8,23 @@ public class Shape {
 	// from and the start of the line for a line shape
 	private int x = 0;
 	private int y = 0;
-	
+
 	// x2 and y2 are the end points for the line shape
 	private int x2 = 0;
 	private int y2 = 0;
-	
-	// width and height are for the width and height of an ellipse 
+
+	// width and height are for the width and height of an ellipse
 	// which would be passed to their draw functions
 	private int width = 0;
 	private int height = 0;
-	
+
 	// Type stores the type of the shape based on the enum defined
 	// below
 	private Type type;
-	
+
 	// Stores the color of the shape
 	private Color color;
-	
+
 	// Stores the line width of the shape
 	private int stroke;
 
@@ -35,10 +32,10 @@ public class Shape {
 	public enum Type {
 		Rectangle, Ellipse, Brush, Eraser, Clear, Chafic
 	}
-	
-	//-------------------------//
-	// 		Constructors 	   //
-	//-------------------------//
+
+	// -------------------------//
+	// Constructors //
+	// -------------------------//
 	// We have multiple constructors because we have many different types
 	// of shapes and want to support them all without passing in null values
 
@@ -81,14 +78,14 @@ public class Shape {
 		this.type = Type.Chafic;
 	}
 
-	//----------------------------------//
-	// 			Arcessors 				//
-	//----------------------------------//
-	//									// 
-	// These access the values of the   //
-	// shape so that we can draw them   //
-	// 									//
-	//----------------------------------//
+	// ----------------------------------//
+	// Acessors //
+	// ----------------------------------//
+	// //
+	// These access the values of the //
+	// shape so that we can draw them //
+	// //
+	// ----------------------------------//
 
 	public int getX() {
 		return x;
