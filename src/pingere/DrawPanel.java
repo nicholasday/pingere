@@ -148,13 +148,13 @@ public class DrawPanel extends JPanel {
 				case Brush:
 					break;
 				case Ellipse:
-					g2d.setStroke(new BasicStroke(State.getStroke()));
+					g2d.setStroke(new BasicStroke(1));
 					g2d.draw(new Ellipse2D.Double(x, y, width, height));
 					break;
 				case Eraser:
 					break;
 				case Rectangle:
-					g2d.setStroke(new BasicStroke(State.getStroke()));
+					g2d.setStroke(new BasicStroke(1));
 					g2d.draw(new Rectangle2D.Double(x, y, width, height));
 					break;
 				default:

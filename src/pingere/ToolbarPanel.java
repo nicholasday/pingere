@@ -115,6 +115,14 @@ public class ToolbarPanel extends JPanel {
 				State.setTool(State.Tool.Chafic);
 			}
 		});
+		
+		// Sets the brush tool
+		brush.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				State.setTool(State.Tool.Brush);
+				statuslabel.setText("Brush selected");
+			 }
+		 });
 
 		// Adds all of the above buttons to the program
 		add(clear);
