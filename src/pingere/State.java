@@ -10,18 +10,12 @@ public class State {
 	private static Color color = Color.black;
 	private static BasicStroke stroke;
 	private static Tool tool = Tool.Brush;
-	private static DrawState state = DrawState.Draw;
-	private static Draw DrawPanel;
-	private static ShapeDraw ShapeDrawPanel;
+	private static DrawPanel DrawPanel;
 	private static boolean clear = false;
 	private static JFrame parentFrame;
 
 	public enum Tool {
 		Brush, Eraser, Ellipse, Rectangle, Clear, Chafic
-	}
-
-	public enum DrawState {
-		Clear, Draw
 	}
 
 	public static void setColor(Color colorInput) {
@@ -49,7 +43,7 @@ public class State {
 	}
 
 	public static void clear() {
-		ShapeDrawPanel.clear();
+		DrawPanel.clear();
 		clear = true;
 	}
 
@@ -61,28 +55,12 @@ public class State {
 		return prevClear;
 	}
 
-	public static DrawState getDrawState() {
-		return state;
-	}
-
-	public static void setDrawState(DrawState drawStateInput) {
-		state = drawStateInput;
-	}
-
-	public static void setDrawPanel(Draw drawPanelInput) {
+	public static void setDrawPanel(DrawPanel drawPanelInput) {
 		DrawPanel = drawPanelInput;
 	}
 
-	public static Draw getDrawPanel() {
+	public static DrawPanel getDrawPanel() {
 		return DrawPanel;
-	}
-
-	public static void setShapeDrawPanel(ShapeDraw shapeDrawPanelInput) {
-		ShapeDrawPanel = shapeDrawPanelInput;
-	}
-
-	public static ShapeDraw getShapeDrawPanel() {
-		return ShapeDrawPanel;
 	}
 
 	public static void colorChooser() {
