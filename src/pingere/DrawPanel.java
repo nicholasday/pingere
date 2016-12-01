@@ -51,54 +51,88 @@ public class DrawPanel extends JPanel {
 	private int height;
 	private int width;
 
+	// We create an ArrayList of Shapes to conserve the shapes we've already drawn 
+	// when paintComponent redraws the panel completely
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
-	BufferedImage chafic;
+	
+	// This is so that we can store the special image we have and draw it 
+	// to the screen.
+	private BufferedImage chafic;
 
+	// This is the constructor for DrawPanel
 	public DrawPanel() {
+		// Tries to load the special imge and throw an exception if it
+		// doesn't load
 		try {
 			chafic = ImageIO.read(new File("Chafic.png"));
 		} catch (IOException ie) {
 			ie.printStackTrace();
 		}
+		
+		// Sets the background white
 		setBackground(Color.white);
+		
+		// Adds mouse and mouse motion listeners to capture mouse info
 		addMouseListener(new MouseAdapter());
 		addMouseMotionListener(new MouseMotionAdapter());
 	}
 
+	// We override JPanel's default paintComponent and add our own logic 
+	// and methods to draw to the screen
 	@Override
 	public void paintComponent(Graphics g) {
+		// Calls the original paintComponent that we overrided to make
+		// sure that we don't remove any functionality that we didn't intend to
 		super.paintComponent(g);
+		
+		// We cast g to Graphics2D because it is more featureful and has 
+		// functions we need
 		Graphics2D g2d = (Graphics2D) g;
 
+		// This for loop loops through all of the shapes in our shapes array
+		// and draws them to the screen
 		for (Shape shape : shapes) {
+			// First we set the color that we saved for the shape originally 
+			// (so that we don't draw with the current color which can be different
 			g2d.setColor(shape.getColor());
-			if (shape.getType() == Type.Eraser)
+			
+			// We have to check if the shape is eraser and if so change the color to white
+			// so that it will blend in with the background
+			if (shape.getType() == Type.Eraser) {
 				g2d.setColor(Color.white);
-			switch (shape.getType()) {
-			case Brush:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-				break;
-			case Eraser:
-				g2d.setStroke(shape.getStroke());
-				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-				break;
-			case Ellipse:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Rectangle:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Clear:
-				g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Chafic:
-				g2d.drawImage(chafic, shape.getX(), shape.getY(), null);
-			default:
-				break;
 			}
+
+			// We use switch over shape.getType() so as to not have repetitive
+			// else ifs. The types of shape could be any of the drawable items on
+			// this panel. So we can draw lines, white eraser lines, ellipses, 
+			// clear (which is a white rectangle the dimensions of the panel), 
+			// rectangles, and that special image
+			switch (shape.getType()) {
+				case Brush:
+					// Sets the p
+					g2d.setStroke(new BasicStroke(1));
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
+				case Eraser:
+					g2d.setStroke(shape.getStroke());
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
+				case Ellipse:
+					g2d.setStroke(new BasicStroke(1));
+					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Rectangle:
+					g2d.setStroke(new BasicStroke(1));
+					g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Clear:
+					g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Chafic:
+					g2d.drawImage(chafic, shape.getX(), shape.getY(), null);
+				default:
+					break;
+				}
 		}
 
 		g2d.setColor(State.getColor());
