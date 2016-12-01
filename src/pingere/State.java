@@ -134,7 +134,7 @@ public class State {
 			BufferedImage bi = robot.createScreenCapture(new Rectangle((int) DrawPanel.getLocationOnScreen().getX(),
 					(int) DrawPanel.getLocationOnScreen().getY(), (int) DrawPanel.getBounds().getWidth(),
 					(int) DrawPanel.getBounds().getHeight()));
-			ImageIO.write(bi, "png", new File("/home/mohammad/image/testImage1.png"));
+			ImageIO.write(bi, "png", new File("testImage1.png"));
 
 		} catch (AWTException e) {
 			e.printStackTrace();
