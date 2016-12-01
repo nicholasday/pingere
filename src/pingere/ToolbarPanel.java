@@ -12,43 +12,32 @@ import javax.swing.JPanel;
 
 public class ToolbarPanel extends JPanel {
 
-	JButton brush, eraser, clear, rectangle, ellipse, save, chooseColor, chafic, undo; // making
-																						// buttons
-																						// for
-																						// each
-																						// of
-																						// the
-																						// tools
-	JLabel statuslabel; // helps the user know which tool is selected
+	JButton brush, eraser, clear, rectangle, ellipse, save, chooseColor, chafic; //making buttons for each of the tools
+	JLabel statuslabel; //helps the user know which tool is selected
 
 	public ToolbarPanel() {
-		// creating all of the buttons
-		// createImageIcon is what allows the buttons to be displayed as an
-		// image, rather than text
+		//creating all of the buttons 
+		//createImageIcon is what allows the buttons to be displayed as an image, rather than text
 		chooseColor = new JButton("Choose Color");
-		chafic = new JButton("???");// hidden surprise
+		chafic = new JButton("???");//hidden surprise
 		brush = new JButton("", createImageIcon("paint_brush.png", "brush"));
 		clear = new JButton("Clear");
 		eraser = new JButton("", createImageIcon("eraser.png", "eraser"));
 		rectangle = new JButton("", createImageIcon("rectangle.png", "rectangle"));
 		ellipse = new JButton("", createImageIcon("ellipse.png", "ellipse"));
-		undo = new JButton("Undo");
 		statuslabel = new JLabel("");
 
-		// Now adding ActionListeners for all of the buttons
+		//Now adding ActionListeners for all of the buttons
 		brush.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setTool(State.Tool.Brush); // Uses the function in State
-													// to set the tool
+				State.setTool(State.Tool.Brush); //Uses the function in State to set the tool
 				statuslabel.setText("Brush selected");
 			}
 		});
 		eraser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setStroke(new BasicStroke(20)); // Makes the stroke size
-														// bigger for the eraser
-				State.setTool(State.Tool.Eraser); // Uses the function in State
-													// to set the tool
+				State.setStroke(new BasicStroke(20)); //Makes the stroke size bigger for the eraser 
+				State.setTool(State.Tool.Eraser); //Uses the function in State to set the tool
 				statuslabel.setText("Eraser selected");
 			}
 		});
@@ -63,16 +52,13 @@ public class ToolbarPanel extends JPanel {
 		});
 		rectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setTool(State.Tool.Rectangle); //// Uses the function in
-														//// State to set the
-														//// tool
+				State.setTool(State.Tool.Rectangle); ////Uses the function in State to set the tool
 				statuslabel.setText("Rectangle selected");
 			}
 		});
 		ellipse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selected) {
-				State.setTool(State.Tool.Ellipse); //// Uses the function in
-													//// State to set the tool
+				State.setTool(State.Tool.Ellipse); ////Uses the function in State to set the tool
 				statuslabel.setText("Ellipse selected");
 			}
 		});
@@ -86,29 +72,17 @@ public class ToolbarPanel extends JPanel {
 				State.setTool(State.Tool.Chafic);
 			}
 		});
-		undo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				State.Tool prevTool = State.getTool();
-				State.setTool(State.Tool.Undo);
-				State.undo();
-				statuslabel.setText("Undone");
-				State.setTool(prevTool);
-			}
-		});
-		// adding all of the buttons onto the frame
+		//adding all of the buttons onto the frame
 		add(clear);
 		add(brush);
 		add(eraser);
 		add(rectangle);
 		add(ellipse);
 		add(chooseColor);
-		add(undo);
 		add(chafic);
 		add(statuslabel);
 	}
-
-	// resizes the images by scaling them down to 20 by 20, so they look like a
-	// button
+	//resizes the images by scaling them down to 20 by 20, so they look like a button
 	private ImageIcon createImageIcon(String url, String description) {
 		java.net.URL imgURL = getClass().getResource(url);
 		return new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));

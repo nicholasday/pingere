@@ -2,12 +2,14 @@ package pingere;
 
 // Used to set the size of the line drawn
 import java.awt.BasicStroke;
+
 // Used to set the color of the shapes drawn
 import java.awt.Color;
 
 // Used for a pop up dialog that lets the user
 // choose any color they want
 import javax.swing.JColorChooser;
+
 // This is so that we can store the parent JFrame
 // and pass it to JColorChooser
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ import javax.swing.JFrame;
 // can communicate between ToolbarPanel and DrawPanel easily
 // and not have too much overlap or too many methods
 public class State {
-	// We use static so that
+	// We use static so that 
 	private static Color color = Color.black;
 	private static BasicStroke stroke;
 	private static Tool tool = Tool.Brush;
@@ -25,7 +27,7 @@ public class State {
 	private static JFrame parentFrame;
 
 	public enum Tool {
-		Brush, Eraser, Ellipse, Rectangle, Clear, Chafic, Undo
+		Brush, Eraser, Ellipse, Rectangle, Clear, Chafic
 	}
 
 	public static void setColor(Color colorInput) {
@@ -55,10 +57,6 @@ public class State {
 	public static void clear() {
 		DrawPanel.clear();
 		clear = true;
-	}
-
-	public static void undo() {
-		DrawPanel.undo();
 	}
 
 	public static boolean isClear() {
