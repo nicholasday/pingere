@@ -1,6 +1,7 @@
 package pingere;
 
 import java.awt.AWTException;
+
 // Used to set the color of the shapes drawn
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -17,6 +18,9 @@ import javax.swing.JColorChooser;
 // and pass it to JColorChooser
 import javax.swing.JFrame;
 
+
+import javax.swing.JFileChooser;
+
 // The reason we use a state class is so that we
 // can communicate between ToolbarPanel and DrawPanel easily
 // and not have too much overlap or too many methods
@@ -26,6 +30,8 @@ public class State {
 	private static Color color = Color.black;
 	private static int strokeSize;
 	private static Tool tool = Tool.Brush;
+	private static File file;
+	private static boolean fileOpened = false;
 
 	// DrawPanel variable to call DrawPanel.clear() from ToolbarPanel
 	private static DrawPanel DrawPanel;
@@ -134,7 +140,7 @@ public class State {
 			BufferedImage bi = robot.createScreenCapture(new Rectangle((int) DrawPanel.getLocationOnScreen().getX(),
 					(int) DrawPanel.getLocationOnScreen().getY(), (int) DrawPanel.getBounds().getWidth(),
 					(int) DrawPanel.getBounds().getHeight()));
-			ImageIO.write(bi, "png", new File("testImage1.png"));
+			ImageIO.write(bi, "png", new File("image.png"));
 
 		} catch (AWTException e) {
 			e.printStackTrace();
@@ -142,7 +148,26 @@ public class State {
 			e.printStackTrace();
 		}
 	}
-
+	
+	// Opens JFileChooser and checks to see if the user has
+	// selected a file and then sets `file` to be the value returned
+	// from the user's selection
+	public static void openFileChooser() {
+		JFileChooser fileChooser = new JFileChooser();
+		int result = fileChooser.showOpenDialog(parentFrame);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			fileOpened = true;
+		    file = fileChooser.getSelectedFile();
+		    System.out.println("Selected file: " + file.getAbsolutePath());
+		    DrawPanel.drawImage();
+		}
+	}
+	
+	// Getter for the file that has been selected
+	public static File getFile() {
+		return file;
+	}
+	
 	// Getter for the parent JFrame
 	public static JFrame getParent() {
 		return parentFrame;

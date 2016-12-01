@@ -20,13 +20,14 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 // ArrayList and Shape.Type are used to create a list of shapes that we draw to the this panel
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 // JPanel is the basis for all of the above functions used. Without it we wouldn't be able to 
 // draw anything at all.
 import javax.swing.JPanel;
+
 
 import pingere.Shape.Type;
 
@@ -86,7 +87,7 @@ public class DrawPanel extends JPanel {
 		// We cast g to Graphics2D because it is more featureful and has
 		// functions we need
 		Graphics2D g2d = (Graphics2D) g;
-
+		
 		// This for loop loops through all of the shapes in our shapes array
 		// and draws them to the screen
 		for (Shape shape : shapes) {
@@ -109,30 +110,32 @@ public class DrawPanel extends JPanel {
 			// clear (which is a white rectangle the dimensions of the panel),
 			// rectangles, and that special image
 			switch (shape.getType()) {
-			case Brush:
-				// Sets the p
-				g2d.setStroke(new BasicStroke(shape.getStroke()));
-				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-				break;
-			case Eraser:
-				g2d.setStroke(new BasicStroke(shape.getStroke()));
-				g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
-				break;
-			case Ellipse:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Rectangle:
-				g2d.setStroke(new BasicStroke(1));
-				g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Clear:
-				g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
-				break;
-			case Chafic:
-				g2d.drawImage(chafic, shape.getX(), shape.getY(), null);
-			default:
-				break;
+				case Brush:
+					// Sets the p
+					g2d.setStroke(new BasicStroke(shape.getStroke()));
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
+				case Eraser:
+					g2d.setStroke(new BasicStroke(shape.getStroke()));
+					g2d.draw(new Line2D.Double(shape.getX2(), shape.getY2(), shape.getX(), shape.getY()));
+					break;
+				case Ellipse:
+					g2d.setStroke(new BasicStroke(1));
+					g2d.draw(new Ellipse2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Rectangle:
+					g2d.setStroke(new BasicStroke(1));
+					g2d.draw(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Clear:
+					g2d.fill(new Rectangle2D.Double(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight()));
+					break;
+				case Chafic:
+					g2d.drawImage(chafic, shape.getX(), shape.getY(), null);
+				case Image:
+					g2d.drawImage(shape.getImage(), shape.getX(), shape.getY(), null);
+				default:
+					break;
 			}
 		}
 
@@ -290,6 +293,20 @@ public class DrawPanel extends JPanel {
 		Shape clear = new Shape(0, 0, getSize().width, getSize().height, Shape.Type.Clear, Color.white);
 		shapes.add(clear);
 
+		// Forces a repaint
+		repaint();
+	}
+	
+	// We do this so that we can select an image from the toolbar and call this from state
+	// ensuring that our image is loaded immediately
+	public void drawImage() {
+		try {
+			BufferedImage image = ImageIO.read(State.getFile());
+			Shape imageShape= new Shape(0, 0, image);
+			shapes.add(imageShape);
+		} catch (IOException ie) {
+			ie.printStackTrace();
+		}
 		// Forces a repaint
 		repaint();
 	}

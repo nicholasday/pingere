@@ -2,6 +2,7 @@ package pingere;
 
 // Used to save the color of the shape
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class Shape {
 	// x and y store the left corner position that the shape draws
@@ -27,10 +28,13 @@ public class Shape {
 
 	// Stores the line width of the shape
 	private int stroke;
+	
+	// Stores an image if the shape is an image
+	private BufferedImage image;
 
 	// This enum serves as a list of shapes we can store
 	public enum Type {
-		Rectangle, Ellipse, Brush, Eraser, Clear, Chafic
+		Rectangle, Ellipse, Brush, Eraser, Clear, Chafic, Image
 	}
 
 	// -------------------------//
@@ -78,6 +82,14 @@ public class Shape {
 		this.type = Type.Chafic;
 	}
 
+	// This is the constructor for any image
+	public Shape(int x, int y, BufferedImage image) {
+		this.x = x;
+		this.y = y;
+		this.type = Type.Image;
+		this.image = image;
+	}
+
 	// ----------------------------------//
 	// Acessors //
 	// ----------------------------------//
@@ -117,6 +129,10 @@ public class Shape {
 
 	public Color getColor() {
 		return color;
+	}
+	
+	public BufferedImage getImage() {
+		return image;
 	}
 
 	public int getStroke() {

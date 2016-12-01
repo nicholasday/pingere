@@ -12,7 +12,10 @@ import javax.swing.JPanel;
 public class ToolbarPanel extends JPanel {
 
 	// JButtons for all of the tools
-	JButton brush, eraser, clear, rectangle, ellipse, chooseColor, chafic, save;
+	JButton brush, eraser, clear, rectangle, ellipse, chooseColor, chafic;
+	
+	// These buttons are for the save and open features
+	JButton save, open;
 
 	// JButtons for the stroke size options
 	JButton increaseStroke, decreaseStroke;
@@ -39,6 +42,7 @@ public class ToolbarPanel extends JPanel {
 		increaseStroke = new JButton("+");
 		decreaseStroke = new JButton("-");
 		save = new JButton("Save");
+		open = new JButton("Open");
 		statuslabel = new JLabel("");
 
 		// ----------------------------------//
@@ -115,6 +119,14 @@ public class ToolbarPanel extends JPanel {
 			}
 		});
 
+		// Calls State.openFileChooser() which launches JFileChooser
+		// and sets the return value as State.file
+		open.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				State.openFileChooser();
+			}
+		});
+
 		// Adds that special image button to the ToolbarPanel
 		chafic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,6 +134,8 @@ public class ToolbarPanel extends JPanel {
 			}
 		});
 
+		// Saves the image and stores the previous tool and reselects
+		// it after the image has been saved
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				State.Tool prevTool = State.getTool();
@@ -150,6 +164,7 @@ public class ToolbarPanel extends JPanel {
 		add(increaseStroke);
 		add(decreaseStroke);
 		add(save);
+		add(open);
 		add(statuslabel);
 	}
 
